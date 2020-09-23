@@ -30,4 +30,4 @@ mvn clean install
 
 ## Resources
 
-Please refer to azure spring data cosmos java sql api [source code](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/cosmos) for more information.
+Please refer to azure spring data cosmos for sql api [source code](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/cosmos) for more information.
