@@ -1,57 +1,33 @@
 # Project Name
 
-(short, 1-3 sentenced, description of the project)
+Azure Spring Data Azure Cosmos DB sample code
 
 ## Features
 
-This project framework provides the following features:
-
-* Feature 1
-* Feature 2
-* ...
+This repo provides basic sample code for getting started with `azure-spring-data-cosmos` for Java SQL API.
 
 ## Getting Started
 
 ### Prerequisites
 
-(ideally very short, if any)
+- `Java Development Kit 8` or `JDK 11` if you run the `azure-spring-data-cosmos-java-11-getting-started`. 
+- An active Azure account. If you don't have one, you can sign up for a [free account](https://azure.microsoft.com/free/). Alternatively, you can use the [Azure Cosmos DB Emulator](https://docs.microsoft.com/en-us/azure/cosmos-db/local-emulator) for development and testing. As emulator https certificate is self signed, you need to import its certificate to java trusted cert store, [explained here](https://docs.microsoft.com/en-us/azure/cosmos-db/local-emulator-export-ssl-certificates)
+- (Optional) SLF4J is a logging facade.
+- (Optional) [SLF4J binding](http://www.slf4j.org/manual.html) is used to associate a specific logging framework with SLF4J.
+- (Optional) Maven.
 
-- OS
-- Library version
-- ...
+SLF4J is only needed if you plan to use logging, please also download an SLF4J binding which will link the SLF4J API with the logging implementation of your choice. See the [SLF4J user manual](http://www.slf4j.org/manual.html) for more information.
 
 ### Installation
 
-(ideally very short)
-
-- npm install [package name]
-- mvn install
-- ...
+mvn clean install
 
 ### Quickstart
-(Add steps to get up and running quickly)
 
-1. git clone [repository clone url]
-2. cd [respository name]
-3. ...
-
-
-## Demo
-
-A demo app is included to show how to use the project.
-
-To run the demo, follow these steps:
-
-(Add steps to start up the demo)
-
-1.
-2.
-3.
+1. git clone https://github.com/Azure-Samples/azure-spring-data-cosmos-java-sql-api-samples.git
+2. cd azure-spring-data-cosmos-java-sql-api-samples
+3. mvn spring-boot:run
 
 ## Resources
 
-(Any additional resources or related projects)
-
-- Link to supporting information
-- Link to similar sample
-- ...
+Please refer to azure spring data cosmos java sql api [source code](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/cosmos) for more information.
