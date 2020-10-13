@@ -10,7 +10,7 @@
 
     <properties>
         <spring.boot.version>2.3.3.RELEASE</spring.boot.version>
-        <azure.spring.data.cosmos.version>3.0.0-beta.2</azure.spring.data.cosmos.version>
+        <azure.spring.data.cosmos.version>3.0.0</azure.spring.data.cosmos.version>
     </properties>
 
     <dependencies>
