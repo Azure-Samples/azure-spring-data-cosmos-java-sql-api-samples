@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 package com.azure.cosmos.springexamples.quickstart.sync;
 
+import com.azure.cosmos.models.PartitionKey;
 import com.azure.cosmos.springexamples.common.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,11 +54,17 @@ public class SampleApplication implements CommandLineRunner {
 
         // <Read>        
         
-        // to find by Id, please specify partition key value if collection is partitioned
-        final User result = userRepository.findByIdAndLastName(testUser1.getId(), testUser1.getLastName());
-        logger.info("Found user : {}", result);
+        // This is a point read See https://aka.ms/PointReadsInSpring for more information on the difference between point reads and queries.
+        final User resultPointRead = userRepository.findById(testUser1.getId(), new PartitionKey(testUser1.getLastName())).get();
+        logger.info("Found user : {}", resultPointRead);
         
         // </Read>        
+        
+        // <Query>
+        // This is a query. Note that anything defined in userRepository would be a query. 
+        // In order to do point reads in Cosmos DB using Spring, you need to explicitly use findById(String id, PartitionKey partitionKey) as above.
+        final User resultQuery = userRepository.findByIdAndLastName(testUser1.getId(), testUser1.getLastName());
+        logger.info("Found user : {}", resultQuery);
         
         Iterator<User> usersIterator = userRepository.findByFirstName("testFirstName").iterator();
 
@@ -68,7 +75,7 @@ public class SampleApplication implements CommandLineRunner {
 
         logger.info("Using reactive repository");
 
-        // <Query>
+        
 
         Flux<User> users = reactiveUserRepository.findByFirstName("testFirstName");
         users.map(u -> {
