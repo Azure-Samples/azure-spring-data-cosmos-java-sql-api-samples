@@ -54,7 +54,7 @@ public class SampleApplication implements CommandLineRunner {
 
         // <Read>        
         
-        // This is a point read See https://aka.ms/PointReadsInSpring for more information on the difference between point reads and queries.
+        // This is a point read. See https://aka.ms/PointReadsInSpring for more information on the difference between point reads and queries.
         final User resultPointRead = userRepository.findById(testUser1.getId(), new PartitionKey(testUser1.getLastName())).get();
         logger.info("Found user : {}", resultPointRead);
         
