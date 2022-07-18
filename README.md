@@ -1,4 +1,4 @@
-# Project Name
+# Azure Cosmos DB Spring Data Sample
 
 Azure Spring Data Azure Cosmos DB sample code
 
