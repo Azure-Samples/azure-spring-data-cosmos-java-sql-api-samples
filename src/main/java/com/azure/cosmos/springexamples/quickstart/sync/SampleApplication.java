@@ -12,7 +12,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import reactor.core.publisher.Flux;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 @SpringBootApplication
 public class SampleApplication implements CommandLineRunner {
@@ -65,6 +67,7 @@ public class SampleApplication implements CommandLineRunner {
         // In order to do point reads in Cosmos DB using Spring, you need to explicitly use findById(String id, PartitionKey partitionKey) as above.
         final User resultQuery = userRepository.findByIdAndLastName(testUser1.getId(), testUser1.getLastName());
         logger.info("Found user (query): {}", resultQuery);
+
         
         Iterator<User> usersIterator = userRepository.findByFirstName("testFirstName").iterator();
 
@@ -73,10 +76,24 @@ public class SampleApplication implements CommandLineRunner {
             logger.info("user is : {}", usersIterator.next());
         }
 
-        logger.info("Using reactive repository");
+        // Get all records where last name is in a given array (equivalent to using IN)
+        logger.info("Users by lastNames list...");
+        ArrayList<String> lastNames = new ArrayList<String>();
+        lastNames.add("testLastName1");
+        lastNames.add("testLastName2");
+        Iterator<User> usersIterator2 = userRepository.getUsersByLastNameList(lastNames).iterator();
+        while (usersIterator2.hasNext()) {
+            logger.info("user is : {}", usersIterator2.next());
+        }
 
+        logger.info("get all users...");
+        // Get all records with simple select * from c
+        Iterator<User> allUsersIterator = userRepository.getAllUsers().iterator();
+        while (allUsersIterator.hasNext()) {
+            logger.info("user is : {}", allUsersIterator.next());
+        }
         
-
+        logger.info("Using reactive repository");
         Flux<User> users = reactiveUserRepository.findByFirstName("testFirstName");
         users.map(u -> {
             logger.info("user is : {}", u);
