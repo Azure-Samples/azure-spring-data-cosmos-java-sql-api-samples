@@ -21,6 +21,10 @@ public interface UserRepository extends CosmosRepository<User, String> {
     @Query(value = "SELECT * FROM c")
     List<User> getAllUsers();
 
+    // Get all records where last name is in a given array (equivalent to using IN)
+    @Query(value = "select * from c where ARRAY_CONTAINS(@lastNames, c.lastName)")
+    List<User> getUsersByLastNameList(@Param("lastNames") List<String> lastNames);
+
     // Query for equality using ==
     @Query(value = "SELECT * FROM c WHERE c.id = @documentId")
     List<User> getUsersWithEquality(@Param("documentId") String documentId);
@@ -42,8 +46,12 @@ public interface UserRepository extends CosmosRepository<User, String> {
     List<User> getUsersWithRange();
 
     // Query using range operators against strings
-    @Query(value = "ELECT * FROM Families f WHERE f.Address.State > 'NY'")
+    @Query(value = "SELECT * FROM Families f WHERE f.Address.State > 'NY'")
     List<User> getUsersWithRangeAgainstStrings();
+
+    // Query using offset and limit
+    @Query(value = "select * from c offset @offset limit @limit")
+    List<User> getUsersWithOffsetLimit(@Param("offset") int offset, @Param("limit") int limit);
 
     // Query with ORDER BY
     @Query(value = "SELECT * FROM Families f WHERE f.LastName = 'Andersen' ORDER BY f.Children[0].Grade")
