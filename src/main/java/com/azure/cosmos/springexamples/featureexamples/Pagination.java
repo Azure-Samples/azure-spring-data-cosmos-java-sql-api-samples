@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-// package com.azure.cosmos.springexamples.featureexamples;
+package com.azure.cosmos.springexamples.featureexamples;
 
 import com.azure.cosmos.springexamples.common.User;
 import com.azure.cosmos.springexamples.quickstart.sync.UserRepository;
