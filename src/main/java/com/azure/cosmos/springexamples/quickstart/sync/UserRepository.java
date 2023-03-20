@@ -62,12 +62,16 @@ public interface UserRepository extends CosmosRepository<User, String> {
     List<User> getUsersWithDistinct();
 
     // Query with aggregate functions
+    @Query(value = "SELECT VALUE COUNT(1) FROM users")
+    long getUsersWithAggregate();
+
+    // Query with aggregate functions and a filter
     @Query(value = "SELECT VALUE COUNT(f) FROM Families f WHERE f.LastName = 'Andersen'")
-    List<User> getUsersWithAggregate();
+    long getUsersWithAggregateWithFilter();
 
     // Query with aggregate functions within documents
     @Query(value = "SELECT VALUE COUNT(child) FROM child IN f.Children")
-    List<User> getUsersWithAggregateWithinDocuments();
+    long getUsersWithAggregateWithinDocuments();
 
     // Work with subdocuments
     @Query(value = "SELECT VALUE c FROM c IN f.Children")

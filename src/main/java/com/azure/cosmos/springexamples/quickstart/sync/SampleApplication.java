@@ -92,14 +92,11 @@ public class SampleApplication implements CommandLineRunner {
         while (allUsersIterator.hasNext()) {
             logger.info("user is : {}", allUsersIterator.next());
         }
-        
-        logger.info("Using reactive repository");
-        Flux<User> users = reactiveUserRepository.findByFirstName("testFirstName");
-        users.map(u -> {
-            logger.info("user is : {}", u);
-            return u;
-        }).subscribe();
 
+        logger.info("count all users...");
+        // Count all records with simple select * from c
+        final long allUsersCount = userRepository.getUsersWithAggregate();
+        logger.info("count is : {}", allUsersCount);
         // </Query>
     }
 }
