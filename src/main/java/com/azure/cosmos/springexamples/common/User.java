@@ -5,7 +5,7 @@ package com.azure.cosmos.springexamples.common;
 import com.azure.spring.data.cosmos.core.mapping.Container;
 import com.azure.spring.data.cosmos.core.mapping.PartitionKey;
 
-@Container(containerName = "myContainer", ru = "400")
+@Container(containerName = "usercontainer")
 public class User {
     private String id;
     private String firstName;
