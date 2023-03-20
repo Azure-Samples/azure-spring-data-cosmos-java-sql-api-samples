@@ -66,8 +66,7 @@
             </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <artifactId>spring-boot-maven-plugin</artifactId>             
+                <artifactId>spring-boot-maven-plugin</artifactId>         
                 <configuration>    
                     <mainClass>com.azure.cosmos.springexamples.quickstart.sync.SampleApplication</mainClass>
                 </configuration>
