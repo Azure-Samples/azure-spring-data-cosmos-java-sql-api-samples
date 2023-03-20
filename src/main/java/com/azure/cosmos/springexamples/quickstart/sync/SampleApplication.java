@@ -3,10 +3,11 @@
 package com.azure.cosmos.springexamples.quickstart.sync;
 
 import com.azure.cosmos.models.PartitionKey;
+import com.azure.cosmos.models.SqlQuerySpec;
 import com.azure.cosmos.springexamples.common.User;
+import com.azure.spring.data.cosmos.core.CosmosTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -14,18 +15,24 @@ import reactor.core.publisher.Flux;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 @SpringBootApplication
 public class SampleApplication implements CommandLineRunner {
 
     private final Logger logger = LoggerFactory.getLogger(SampleApplication.class);
 
-    @Autowired
     private UserRepository userRepository;
 
-    @Autowired
+    private CosmosTemplate cosmosTemplate;
+
     private ReactiveUserRepository reactiveUserRepository;
+
+    //Spring dependency injection using constructor
+    public SampleApplication(UserRepository userRepository, CosmosTemplate cosmosTemplate, ReactiveUserRepository reactiveUserRepository){
+        this.userRepository = userRepository;
+        this.cosmosTemplate = cosmosTemplate;
+        this.reactiveUserRepository = reactiveUserRepository;
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(SampleApplication.class, args);
@@ -92,7 +99,7 @@ public class SampleApplication implements CommandLineRunner {
         while (allUsersIterator.hasNext()) {
             logger.info("user is : {}", allUsersIterator.next());
         }
-        
+
         logger.info("Using reactive repository");
         Flux<User> users = reactiveUserRepository.findByFirstName("testFirstName");
         users.map(u -> {
@@ -101,5 +108,15 @@ public class SampleApplication implements CommandLineRunner {
         }).subscribe();
 
         // </Query>
+
+        // <CustomQuery>
+        //use cosmos template if you need to execute a non Spring parameterized custom query using the raw Cosmos DB SQL API query syntax
+        SqlQuerySpec querySpec = new SqlQuerySpec("SELECT * FROM c where c.lastName = 'testLastName2'");
+        Iterable<User> user = cosmosTemplate.runQuery(querySpec, User.class, User.class);
+        for (User userResults: user){
+            logger.info("custom query result id: "+userResults.getId());
+            logger.info("custom query result last name: "+userResults.getLastName());
+        }
+        // </CustomQuery>
     }
 }
