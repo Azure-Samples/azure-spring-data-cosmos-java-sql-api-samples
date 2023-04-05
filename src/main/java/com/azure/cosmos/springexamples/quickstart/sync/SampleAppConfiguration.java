@@ -4,6 +4,8 @@ package com.azure.cosmos.springexamples.quickstart.sync;
 
 import com.azure.cosmos.CosmosClientBuilder;
 import com.azure.cosmos.DirectConnectionConfig;
+import com.azure.identity.DefaultAzureCredential;
+import com.azure.identity.DefaultAzureCredentialBuilder;
 import com.azure.spring.data.cosmos.config.AbstractCosmosConfiguration;
 import com.azure.spring.data.cosmos.config.CosmosConfig;
 import com.azure.spring.data.cosmos.core.ResponseDiagnostics;
@@ -33,10 +35,15 @@ public class SampleAppConfiguration extends AbstractCosmosConfiguration {
     @Bean
     public CosmosClientBuilder cosmosClientBuilder() {
         DirectConnectionConfig directConnectionConfig = DirectConnectionConfig.getDefaultConfig();
+        // DefaultAzureCredential uses environment variables as explained in the below link to build corresponding
+        // credential. For example setting the environment variables AZURE_CLIENT_ID, AZURE_USERNAME, AZURE_PASSWORD
+        // will create a UsernamePasswordCredential. Read the link below for further info
+        // https://docs.microsoft.com/en-us/java/api/overview/azure/identity-readme?view=azure-java-stable#service-principal-with-secret
+        DefaultAzureCredential credential = new DefaultAzureCredentialBuilder().build();
         return new CosmosClientBuilder()
-            .endpoint(properties.getUri())
-            .key(properties.getKey())
-            .directMode(directConnectionConfig);
+                       .endpoint(properties.getUri())
+                       .credential(credential)
+                       .directMode(directConnectionConfig);
     }
 
     @Bean
