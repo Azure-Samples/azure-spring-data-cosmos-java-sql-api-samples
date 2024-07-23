@@ -1,4 +1,4 @@
-**The samples in this repo have moved [here](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/cosmos/azure-spring-data-cosmos/spring3-samples/cosmos-quickstart-samples). This repo is no longer maintained**
+**The samples in this repo have moved [here](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/cosmos/azure-spring-data-cosmos/spring3-samples/cosmos-quickstart-samples). This repo is no longer maintained**.
 
 
 # Azure Cosmos DB for NoSQL & Spring Data sample
