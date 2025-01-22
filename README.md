@@ -27,6 +27,10 @@ SLF4J is only needed if you plan to use logging, please also download an SLF4J b
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=287104556)
 
+## Run on [Codeanywhere](https://codeanywhere.com)
+
+[![Open in Codeanywhere](https://codeanywhere.com/img/open-in-codeanywhere-btn.svg)](https://app.codeanywhere.com/#https://github.com/Azure-Samples/azure-spring-data-cosmos-java-sql-api-samples)
+
 ### Quickstart
 
 1. In an empty directory, clone the repository: `git clone https://github.com/Azure-Samples/azure-spring-data-cosmos-java-sql-api-samples.git .`
