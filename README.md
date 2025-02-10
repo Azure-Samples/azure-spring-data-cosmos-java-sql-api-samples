@@ -33,6 +33,9 @@ SLF4J is only needed if you plan to use logging, please also download an SLF4J b
 1. Update the **src/main/resources/application.properties** file with the **uri**, **primary key**, and **secondary key* from your Azure Cosmos DB for NoSQL account.
 3. Run the application: `mvn spring-boot:run`
 
+### Run on [Codeanywhere](https://codeanywhere.com)
+
+[![Open in Codeanywhere](https://codeanywhere.com/img/open-in-codeanywhere-btn.svg)](https://app.codeanywhere.com/#https://github.com/Azure-Samples/azure-spring-data-cosmos-java-sql-api-samples)
 ## Resources
 
 Please refer to Spring Data for Azure Cosmos DB for NoSQL [source code](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/cosmos) for more information.
